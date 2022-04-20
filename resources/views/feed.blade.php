@@ -29,7 +29,7 @@
                                             <img src="assets/images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-8 h-8">
                                         </div>
                                     </a>
-                                    <span class="block capitalize font-semibold dark:text-gray-100"> Johnson smith </span>
+                                    <span class="block capitalize font-semibold dark:text-gray-100"> {{ $posts->user->name }} </span>
                                 </div>
                               <div>
                                 <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700"></i> </a>

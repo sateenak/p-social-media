@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->string('image');
+            $table->string('image')->nullable()->default(null);
+            $table->foreignId('user_id');
             $table->integer('like')->default(0);
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

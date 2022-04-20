@@ -12,11 +12,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
         return view('feed', [
             'title' => 'feed',
-            'posts' => Post::all()
+            'posts' => $post
         ]);
     }
 
@@ -27,7 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('create', [
+            'title' => 'create'
+        ]);
     }
 
     /**
@@ -38,7 +40,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'content' => 'required|max:500',
+        ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        Post::create($validatedData);
+        return redirect('/');
     }
 
     /**

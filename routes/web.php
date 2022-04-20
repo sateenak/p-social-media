@@ -24,7 +24,7 @@ Route::get('chat', function () {
         'title' => 'chat'
     ]);
 });
-Route::get('/', [PostController::class, 'index'])->middleware('auth');
+Route::resource('/', PostController::class)->middleware('auth');
 Route::get('/feed', [PostController::class, 'index'])->middleware('auth');
 Route::get('/profile', [UserController::class, 'index'])->middleware('auth');
 Route::get('/form-login', [LoginController::class, 'index'])->name('login')->middleware('guest');
