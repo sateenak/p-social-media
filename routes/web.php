@@ -19,11 +19,13 @@ use function Ramsey\Uuid\v1;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('chat', function () {
     return view('chat', [
         'title' => 'chat'
     ]);
 });
+Route::resource('/post', PostController::class)->middleware('auth');
 Route::resource('/', PostController::class)->middleware('auth');
 Route::get('/feed', [PostController::class, 'index'])->middleware('auth');
 Route::get('/profile', [UserController::class, 'index'])->middleware('auth');

@@ -8,8 +8,7 @@
 <li class="active">
 @endsection
 @section('container')
-
-            <div class="container m-auto">
+           <div class="container m-auto">
 
                 <h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mb-5"> Feed </h1>
 
@@ -18,6 +17,8 @@
                     <!-- left sidebar-->
                     <div class="space-y-5 flex-shrink-0 lg:w-7/12">
 @foreach ($posts as $post)
+    
+
                         <!-- post 1-->
                         <div class="bg-white shadow rounded-md dark:bg-gray-900 -mx-2 lg:mx-0">
     
@@ -29,13 +30,13 @@
                                             <img src="assets/images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-8 h-8">
                                         </div>
                                     </a>
-                                    <span class="block capitalize font-semibold dark:text-gray-100"> {{ $posts->user->name }} </span>
+                                    <span class="block capitalize font-semibold dark:text-gray-100"> {{ $post->user->name }} </span>
                                 </div>
                               <div>
                                 <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700"></i> </a>
                                 <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" uk-drop="mode: hover;pos: top-right">
-                              
-                                    <ul class="space-y-1">
+                              @if ($user == $post->user->id)
+                                  <ul class="space-y-1">
                                       <li> 
                                           <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                                            <i class="uil-share-alt mr-1"></i> Share
@@ -60,11 +61,31 @@
                                         <hr class="-mx-2 my-2 dark:border-gray-800">
                                       </li>
                                       <li> 
-                                          <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600">
-                                           <i class="uil-trash-alt mr-1"></i>  Delete
-                                          </a> 
+                                          <form action="/post/{{ $post->id }}" method="POST" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600" style="display: inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit" style="display: inline-block" onclick="return confirm('Are you sure?')"><i class="uil-trash-alt mr-1"></i>  Delete </button>
+                                          </form>
                                       </li>
                                     </ul>
+                              @else
+                              <ul class="space-y-1">
+                                <li> 
+                                    <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                                     <i class="uil-share-alt mr-1"></i> Share
+                                    </a> 
+                                </li>
+                                <li> 
+                                    <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                                     <i class="uil-favorite mr-1"></i>  Add favorites 
+                                    </a> 
+                                </li>
+                                <li>
+                                  <hr class="-mx-2 my-2 dark:border-gray-800">
+                                </li>
+                              </ul>
+                              @endif
+                                    
                                 
                                 </div>
                               </div>
@@ -74,8 +95,11 @@
                                 <a href="assets/images/post/img4.jpg">  
                                     <img src="assets/images/post/img4.jpg" alt="">
                                 </a>
-                                <p>{{ $post->content }}</p>
-                             </div>
+                                <div class="story-content p-4" data-simplebar>
+
+                                    <p>{{ $post->content }}</p>
+                                </div>
+                            </div>
                             
     
                             <div class="py-3 px-4 space-y-3"> 
@@ -147,10 +171,9 @@
                                 </div>
     
                             </div>
-                            @endforeach
+    
                         </div>
-
-
+@endforeach
                         <!-- Load more-->
                         <div class="flex justify-center mt-6" id="toggle" uk-toggle="target: #toggle ;animation: uk-animation-fade">
                             <a href="#"
@@ -588,63 +611,6 @@
                         <a href="#"> 
                             <i  class="icon-feather-more-horizontal text-2xl rounded-full p-2 transition -mr-1"></i>
                         </a>
-                    </div>
-                    <div class="story-content p-4" data-simplebar>
-
-                        <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
-                        
-                        <div class="py-4 ">
-                            <div class="flex justify-around">
-                                <a href="#" class="flex items-center space-x-3">
-                                    <div class="flex font-bold items-baseline"> <i class="uil-heart mr-1"> </i> Like</div>
-                                </a>
-                                <a href="#" class="flex items-center space-x-3">
-                                    <div class="flex font-bold items-baseline"> <i class="uil-heart mr-1"> </i> Comment</div>
-                                </a>
-                                <a href="#" class="flex items-center space-x-3">
-                                    <div class="flex font-bold items-baseline"> <i class="uil-heart mr-1"> </i> Share</div>
-                                </a>
-                            </div>
-                            <hr class="-mx-4 my-3">
-                            <div class="flex items-center space-x-3"> 
-                                <div class="flex items-center">
-                                    <img src="assets/images/avatars/avatar-1.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white">
-                                    <img src="assets/images/avatars/avatar-4.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white -ml-2">
-                                    <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-6 h-6 rounded-full border-2 border-white -ml-2">
-                                </div>
-                                <div>
-                                    Liked <strong> Johnson</strong> and <strong> 209 Others </strong>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div class="-mt-1 space-y-1">
-                        <div class="flex flex-1 items-center space-x-2">
-                            <img src="assets/images/avatars/avatar-2.jpg" class="rounded-full w-8 h-8">
-                            <div class="flex-1 p-2">
-                                consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                            </div>
-                        </div>
-
-                        <div class="flex flex-1 items-center space-x-2">
-                            <img src="assets/images/avatars/avatar-4.jpg" class="rounded-full w-8 h-8">
-                            <div class="flex-1 p-2">
-                                consectetuer adipiscing elit
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    </div>
-                    <div class="p-3 border-t dark:border-gray-600">
-                        <div class="bg-gray-200 dark:bg-gray-700 rounded-full rounded-md relative">
-                            <input type="text" placeholder="Add your Comment.." class="bg-transparent max-h-8 shadow-none">
-                            <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
-                                <a href="#"> <i class="uil-image"></i></a>
-                                <a href="#"> <i class="uil-video"></i></a>
-                            </div>
-                        </div>
                     </div>
 
                 </div>

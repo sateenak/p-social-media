@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -16,7 +17,8 @@ class PostController extends Controller
     {
         return view('feed', [
             'title' => 'feed',
-            'posts' => $post
+            'posts' => $post->all(),
+            'user' => auth()->User()->id
         ]);
     }
 
@@ -91,6 +93,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect('/feed');
     }
 }
