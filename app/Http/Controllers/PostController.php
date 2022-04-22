@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -15,9 +16,10 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
+        $postsaya = Post::latest()->get();
         return view('feed', [
             'title' => 'feed',
-            'posts' => $post->all(),
+            'posts' => $postsaya,
             'user' => auth()->User()->id,
             'count' => $post->where('user_id', auth()->User()->id)->get()
         ]);
@@ -46,8 +48,13 @@ class PostController extends Controller
     {
         $validatedData = $request->validate([
             'content' => 'required|max:500',
+            'image' => 'image|file|max:6000'
         ]);
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
 
+        // $validatedData['image'] = $request->file('image')->store('post-images');
         $validatedData['user_id'] = auth()->user()->id;
         Post::create($validatedData);
         return redirect('/');
@@ -88,10 +95,17 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $validatedData = $request->validate([
+        $rules = [
             'content' => 'required|max:500',
-        ]);
-
+            'image' => 'image|file|max:6000'
+        ];
+        $validatedData = $request->validate($rules);
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
         $validatedData['user_id'] = auth()->user()->id;
         Post::where('id', $post->id)->update($validatedData);
         return redirect('/');
@@ -105,6 +119,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
         $post->delete();
         return redirect('/feed');
     }

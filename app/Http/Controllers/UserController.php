@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,8 +15,12 @@ class UserController extends Controller
      */
     public function index()
     {
+        $postsaya = Post::latest()->get();
         return view('profile', [
-            'title' => 'profile'
+            'title' => 'profile',
+            'post' => $postsaya,
+            'user' => auth()->User()->id,
+            'count' => Post::where('user_id', auth()->User()->id)->get()
         ]);
     }
     /**
