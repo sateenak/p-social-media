@@ -18,7 +18,7 @@ class UserController extends Controller
         $postsaya = Post::latest()->get();
         return view('profile', [
             'title' => 'profile',
-            'post' => $postsaya,
+            'posts' => Post::where('user_id', auth()->User()->id)->latest()->get(),
             'user' => auth()->User()->id,
             'count' => Post::where('user_id', auth()->User()->id)->get()
         ]);

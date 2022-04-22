@@ -92,7 +92,7 @@
                             </div>
 
                             <div class="divide-gray-300 divide-transparent divide-x grid grid-cols-3 lg:text-left lg:text-lg mt-3 text-center w-full dark:text-gray-100">
-                                <div class="flex lg:flex-row flex-col"> 120k <strong class="lg:pl-2">Posts</strong></div>
+                                <div class="flex lg:flex-row flex-col"> {{ $count->count() }} <strong class="lg:pl-2">Posts</strong></div>
                                 <div class="lg:pl-4 flex lg:flex-row flex-col"> 420k <strong class="lg:pl-2">Followers</strong></div>
                                 <div class="lg:pl-4 flex lg:flex-row flex-col"> 530k <strong class="lg:pl-2">Following</strong></div>
                             </div>
@@ -131,103 +131,19 @@
                 </div>
 
                 <div class="my-6 grid lg:grid-cols-4 grid-cols-2 gap-1.5 hover:text-yellow-700 uk-link-reset">
-                <div>
-                    <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
-                            <img src="assets/images/avatars/avatar-lg-1.jpg" class="w-full h-full absolute object-cover inset-0">
+                   @foreach ($posts as $post)
+                       <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
+                            <img src="{{ asset('/storage/'.$post->image) }}" class="w-full h-full absolute object-cover inset-0">
 
                             <div class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">   
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
+                                <a href="#story-modal{{ $post->id }}" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
+                                <a href="#story-modal{{ $post->id }}" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
+                                <a href="#story-modal{{ $post->id }}" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
                             </div>
 
                         </div>
-                    </div>
-                    <div>
-                        <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
-                            <img src="assets/images/post/img1.jpg" class="w-full h-full absolute object-cover inset-0">
-
-                            <div class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">   
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
-                            <img src="assets/images/post/img2.jpg" class="w-full h-full absolute object-cover inset-0">
-
-                            <div class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">   
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
-                            <img src="assets/images/post/img3.jpg" class="w-full h-full absolute object-cover inset-0">
-
-                            <div class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">   
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
-                            <img src="assets/images/post/img4.jpg" class="w-full h-full absolute object-cover inset-0">
-
-                            <div class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">   
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
-                            <img src="assets/images/post/img5.jpg" class="w-full h-full absolute object-cover inset-0">
-
-                            <div class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">   
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
-                            <img src="assets/images/avatars/avatar-1.jpg" class="w-full h-full absolute object-cover inset-0">
-
-                            <div class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">   
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-red-500 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle" tabindex="0"> 
-                            <img src="assets/images/avatars/avatar-6.jpg" class="w-full h-full absolute object-cover inset-0">
-
-                            <div class="absolute bg-black bg-opacity-40 bottom-0 flex h-full items-center justify-center space-x-5 text-lg text-white uk-transition-scale-up w-full">   
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="heart" class="mr-1"></ion-icon> 150 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1"></ion-icon> 30 </a>
-                                <a href="#story-modal" uk-toggle class="flex items-center"> <ion-icon name="pricetags" class="mr-1"></ion-icon> 12  </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    
+                   @endforeach
+                        
                 </div>
 
                 <div class="flex justify-center mt-6">
@@ -243,12 +159,13 @@
 
 
    <!-- Story modal -->
-    <div id="story-modal" class="uk-modal-container" uk-modal>
+   @foreach ($posts as $post)
+          <div id="story-modal{{ $post->id }}" class="uk-modal-container" uk-modal>
         <div class="uk-modal-dialog story-modal">
             <button class="uk-modal-close-default lg:-mt-9 lg:-mr-9 -mt-5 -mr-5 shadow-lg bg-white rounded-full p-4 transition dark:bg-gray-600 dark:text-white" type="button" uk-close></button>
 
                 <div class="story-modal-media">
-                    <img src="assets/images/post/img4.jpg" alt=""  class="inset-0 h-full w-full object-cover">
+                    <img src="{{ asset('/storage/'.$post->image) }}" alt=""  class="inset-0 h-full w-full object-cover">
                 </div>
                 <div class="flex-1 bg-white dark:bg-gray-900 dark:text-gray-100">
                 
@@ -261,7 +178,7 @@
                                         class="bg-gray-200 border border-white rounded-full w-8 h-8">
                                 </div>
                             </a>
-                            <span class="block text-lg font-semibold"> Johnson smith </span>
+                            <span class="block text-lg font-semibold"> {{ $post->user->name }} </span>
                         </div>
                         <a href="#"> 
                             <i  class="icon-feather-more-horizontal text-2xl rounded-full p-2 transition -mr-1"></i>
@@ -269,7 +186,7 @@
                     </div>
                     <div class="story-content p-4" data-simplebar>
 
-                        <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+                        <p> {{ $post->content }} </p>
                         
                         <div class="py-4 ">
                             <div class="flex justify-around">
@@ -329,5 +246,7 @@
 
         </div>
     </div>
+   @endforeach
+ 
 
     @endsection
