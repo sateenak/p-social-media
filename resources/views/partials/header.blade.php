@@ -50,7 +50,7 @@
                 <ul class="dropdown_scrollbar" data-simplebar>
                     <li>
                         <a href="#">
-                            <div class="drop_avatar"> <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                            <div class="drop_avatar"> <img src={{ asset("assets/images/avatars/avatar-1.jpg") }} alt="">
                             </div>
                             <div class="drop_content">
                                 <p> <strong>Adrian Mohani</strong>  Lorem ipsum dolor cursus
@@ -62,7 +62,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <div class="drop_avatar"> <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                            <div class="drop_avatar"> <img src={{ asset("assets/images/avatars/avatar-2.jpg") }} alt="">
                             </div>
                             <div class="drop_content">
                                 <p>
@@ -75,7 +75,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <div class="drop_avatar"> <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                            <div class="drop_avatar"> <img src={{ asset("assets/images/avatars/avatar-3.jpg") }} alt="">
                             </div>
                             <div class="drop_content">
                                 <p>
@@ -88,7 +88,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <div class="drop_avatar"> <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                            <div class="drop_avatar"> <img src={{ asset("assets/images/avatars/avatar-1.jpg") }} alt="">
                             </div>
                             <div class="drop_content">
                                 <p>
@@ -101,7 +101,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <div class="drop_avatar"> <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                            <div class="drop_avatar"> <img src{{ asset("assets/images/avatars/avatar-3.jpg") }} alt="">
                             </div>
                             <div class="drop_content">
                                 <p>
@@ -132,7 +132,7 @@
                 <ul class="dropdown_scrollbar" data-simplebar>
                     <li>
                         <a href="#">
-                            <div class="drop_avatar"> <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                            <div class="drop_avatar"> <img src={{ asset("assets/images/avatars/avatar-1.jpg") }} alt="">
                             </div>
                             <div class="drop_content">
                                 <strong> John menathon </strong> <time> 6:43 PM</time>
@@ -142,7 +142,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <div class="drop_avatar"> <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                            <div class="drop_avatar"> <img src={{ asset("assets/images/avatars/avatar-2.jpg") }} alt="">
                             </div>
                             <div class="drop_content">
                                 <strong> Zara Ali </strong> <time>12:43 PM</time>
@@ -197,7 +197,7 @@
             <!-- profile -->
 
             <a href="#">
-                <img src="assets/images/avatars/avatar-2.jpg" class="header-avatar" alt="">
+                <img src={{ asset("assets/images/avatars/avatar-2.jpg") }} class="header-avatar" alt="">
             </a>
             <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
                 <ul>

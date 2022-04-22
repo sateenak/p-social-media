@@ -18,7 +18,8 @@ class PostController extends Controller
         return view('feed', [
             'title' => 'feed',
             'posts' => $post->all(),
-            'user' => auth()->User()->id
+            'user' => auth()->User()->id,
+            'count' => $post->where('user_id', auth()->User()->id)->get()
         ]);
     }
 
@@ -27,10 +28,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
         return view('create', [
-            'title' => 'create'
+            'title' => 'create',
+            'count' => $post->where('user_id', auth()->User()->id)->get()
         ]);
     }
 
@@ -70,7 +72,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('edit', [
+            'title' => 'edit',
+            'count' => $post->where('user_id', auth()->User()->id)->get(),
+            'post' => $post
+        ]);
     }
 
     /**
@@ -82,7 +88,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $request->validate([
+            'content' => 'required|max:500',
+        ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        Post::where('id', $post->id)->update($validatedData);
+        return redirect('/');
     }
 
     /**
